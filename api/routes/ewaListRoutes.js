@@ -14,6 +14,10 @@ module.exports = function(app) {
         .get(todoList.login);
 
 
+    app.route('/sidebar')
+        .get(todoList.find_newest_for_sidebar);
+
+
     app.route('/sensors/:sensorId')
         .get(todoList.read_a_task)
         .put(todoList.update_a_task)

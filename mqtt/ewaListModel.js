@@ -67,6 +67,6 @@ var SensorSchema = new Schema({
     }
 
 
-});
+}, { collection: 'sensors' });
 
-module.exports = mongoose.model('Sensors', SensorSchema);
+module.exports = mongoose.model('sensors', SensorSchema);

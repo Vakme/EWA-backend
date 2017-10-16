@@ -8,25 +8,26 @@ var express = require('express'),
 
 var cors = require('cors');
 
-var whitelist = ['http://localhost:8080', 'http://localhost:3000', 'http://127.0.0.1:8000', 'undefined']
+var whitelist = ['http://localhost:8080', 'http://localhost:8000', 'http://192.168.1.12:8080', 'http://localhost:3000', 'http://127.0.0.1:8000', 'undefined']
 var corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
             callback(null, true)
         } else {
-            callback(new Error('Not allowed by CORS: ' + origin))
+            callback(new Error('Not allowed by CORS: ' + origin));
+            console.log('Not allowed by CORS: ' + origin)
         }
     },
     credentials: true
 };
 
-//app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/ewa');
+mongoose.connect('mongodb://localhost/testowa');
 
 
 

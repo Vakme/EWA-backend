@@ -1,6 +1,5 @@
 'use strict';
 
-
 var mongoose = require('mongoose'),
     Sensor = mongoose.model('Sensors');
 
@@ -9,8 +8,17 @@ exports.list_all_tasks = function(req, res, next) {
         if (err)
             res.send(err);
         res.json(task);
-    });
+    }).limit(20).sort({timestamp: 1});
 };
+
+exports.find_newest_for_sidebar = function(req, res, next) {
+    Sensor.find({}, function(err, task) {
+        if (err)
+            res.send(err);
+        res.json(task);
+    }).limit(4).sort({timestamp: 1});
+};
+
 
 
 
